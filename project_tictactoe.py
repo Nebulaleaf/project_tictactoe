@@ -58,9 +58,9 @@ def player1_move(board, sign):
             if 0 <= position < 20 and board[position] == "-":
                 return move(board, sign, position)
             else:
-                print("Nope, not here.")
+                print("Nope, not here. A non taken place between 0 and 19.")
         except ValueError:
-            print("I said between 0 and 19.") # why doesn't it work with input numbers 20+? this only comes when the input of the position is gibberish like "dafjso", but with 99 it says "Nope, not here?"
+            print("Must be a number.") # I misunderstood the try/except function, but I think now I get it, its about the validation of the kind of input (str, int)
 
 # After I finished I realized you wanted a game against a computer, I hope it's ok I made a 2-Player Game, I somehow forgot it while working on the game -.-
 def player2_move(board, sign):
@@ -70,9 +70,9 @@ def player2_move(board, sign):
             if 0 <= position < 20 and board[position] == "-":
                 return move(board, sign, position)
             else:
-                print("Nope, not here.")
+                print("Nope, not here. A non taken place between 0 and 19.")
         except ValueError:
-            print("I said between 0 and 19.") # why doesn't it work with input numbers 20+? this only comes when the input of the position is gibberish like "dafjso", but with 99 it says "Nope, not here?"
+            print("Must be a number.") # I misunderstood the try/except function, but I think now I get it, its about the validation of the kind of input (str, int)
 
 # ttt-function:
 def tictactoe():
