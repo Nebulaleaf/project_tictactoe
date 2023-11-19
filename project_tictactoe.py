@@ -47,24 +47,20 @@ def move(board, sign, position):
                 else:
                     new_board += board[i]
             return new_board
-        else:
-            print("This place is already taken!")
-    else:
-        print("Position not valid.")
-    
+        
         return board  # Back if position taken is not valid.
 
 # Player1 move function
 def player1_move(board, sign):
     while True:
         try:# I wanted to catch if the input is valid, I had a smilar question in a previous homework and got the hint that I could look up for try function, I hope it's ok I used this even if we havent learned it sofar
-            position = int(input(player1 + ", where do you want to place your " + player1_sign + ". Choose a number between 0-19: "))
+            position = int(input(player1 + ", where do you want to place your " + player1_sign + ". Choos e a number between 0-19: "))
             if 0 <= position < 20 and board[position] == "-":
                 return move(board, sign, position)
             else:
                 print("Nope, not here.")
         except ValueError:
-            print("I said between 0 and 19.")
+            print("I said between 0 and 19.") # why doesn't it work with input numbers 20+? this only comes when the input of the position is gibberish like "dafjso", but with 99 it says "Nope, not here?"
 
 # After I finished I realized you wanted a game against a computer, I hope it's ok I made a 2-Player Game, I somehow forgot it while working on the game -.-
 def player2_move(board, sign):
@@ -76,7 +72,7 @@ def player2_move(board, sign):
             else:
                 print("Nope, not here.")
         except ValueError:
-            print("I said between 0 and 19.")
+            print("I said between 0 and 19.") # why doesn't it work with input numbers 20+? this only comes when the input of the position is gibberish like "dafjso", but with 99 it says "Nope, not here?"
 
 # ttt-function:
 def tictactoe():
@@ -100,9 +96,9 @@ def tictactoe():
         if state != "-":
             print("Board:", board)  # Show final board
             if state == player1_sign:
-                print(f"Ho, Ho, Ho! {player1} wins!")
+                print(f"Ho, Ho, Ho! Awesome {player1} wins!")
             elif state == player2_sign:
-                print(f"Ho, Ho, Ho! {player2} wins!")
+                print(f"Ho, Ho, Ho! Awesome {player2} wins!")
             else:
                 print("Well, I think you have to play again. It's a draw!")
             break  # End the game loop
