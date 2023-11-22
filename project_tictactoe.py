@@ -1,6 +1,6 @@
 # Player setup
 player1 = input("Ready, player One? What's your name?\n")
-player2 = input("Ready, player Two? What's your name?\n")
+player2 = "Computer-Player"
 print("Welcome to 1D-tic-tac-toe Winter Edition, " + player1 +" and " + player2 + "!")
 
 # Assign signs to players
@@ -26,14 +26,14 @@ else:
 # Evaluate Function
 def evaluate(board):
     # Win:
-    for sign in [player1_sign, player2_sign]:
+    for sign in [player1_sign, player2_sign]: # Checking if either sign1 or sign2 is placed 3 times next to each other
         if sign * 3 in board:
             return sign
     # Draw:
-    if "-" not in board:
+    if "-" not in board: # If the first "if" isnt true, it checks every field in the board is filled (no "-" inside), so it's draw
         return "!"
     # Game ongoing:
-    return "-"
+    return "-" # If neither of the first two if's are true, its going to the next round
 
 # Move Function
 def move(board, sign, position):
@@ -41,10 +41,10 @@ def move(board, sign, position):
         if board[position] == "-":  # Position empty?
             # Create a new board with the sign placed.
             new_board = ""
-            for i in range(len(board)):
-                if i == position:
+            for i in range(len(board)): # Now checking every character in the board
+                if i == position: # As soon at it hits the "position" it fills the sign
                     new_board += sign
-                else:
+                else: # Every other character (not position), gets filled up again with the original board signs
                     new_board += board[i]
             return new_board
         
@@ -62,17 +62,16 @@ def player1_move(board, sign):
         except ValueError:
             print("Must be a number.") # I misunderstood the try/except function, but I think now I get it, its about the validation of the kind of input (str, int)
 
-# After I finished I realized you wanted a game against a computer, I hope it's ok I made a 2-Player Game, I somehow forgot it while working on the game -.-
-def player2_move(board, sign):
+# Pc move function
+def pc_move(board, sign):
     while True:
-        try:
-            position = int(input(player2 + ", where do you want to place your " + player2_sign + ". Choose a number between 0-19: "))
-            if 0 <= position < 20 and board[position] == "-":
-                return move(board, sign, position)
-            else:
-                print("Nope, not here. A non taken place between 0 and 19.")
-        except ValueError:
-            print("Must be a number.") # I misunderstood the try/except function, but I think now I get it, its about the validation of the kind of input (str, int)
+        position = randrange(20)
+        print(f"{player2} choose position {position}")
+        if 0 <= position < 20 and board[position] == "-":
+            return move(board, sign, position)
+        else:
+            print("Nope, not here. A non taken place between 0 and 19.")
+
 
 # ttt-function:
 def tictactoe():
@@ -89,7 +88,7 @@ def tictactoe():
         if current_player == player1:
             board = player1_move(board, current_sign)
         else:
-            board = player2_move(board, current_sign)
+            board = pc_move(board, current_sign)
 
         # Check the game:
         state = evaluate(board)
